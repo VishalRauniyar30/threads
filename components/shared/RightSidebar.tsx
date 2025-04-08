@@ -9,9 +9,9 @@ async function RightSidebar() {
         return null
     }
     
-    const similarMinds = { user: [{ id:1 }, { id: 2 }]}
+    const similarMinds = []
 
-    const suggestedCommunities = { commnunities: [{ id:1 }, { id: 2 }]}
+    const suggestedCommunities = []
     
     return (
         <section className="custom-scrollbar sticky right-0 top-0 z-20 flex h-screen w-fit flex-col justify-between gap-12 overflow-auto border-l border-l-[#1F1F22] bg-[#121417] px-10 pb-6 pt-28 max-xl:hidden">
@@ -20,11 +20,8 @@ async function RightSidebar() {
                     Suggested Communities
                 </h3>
                 <div className="mt-7 flex w-[350px] flex-col gap-9">
-                    {!suggestedCommunities.commnunities.length ? (
+                    {suggestedCommunities.length > 0 ? (
                         <>
-                            {suggestedCommunities.commnunities.map((community) => (
-                                <UserCard key={community.id} />
-                            ))}
                         </>
                     ) : (
                         <p className="text-base leading-[140%] font-normal text-[#7878A3]">
@@ -38,11 +35,8 @@ async function RightSidebar() {
                     Similar Minds
                 </h3>
                 <div className="mt-7 flex w-[350px] flex-col gap-10">
-                    {!similarMinds.user.length ? (
+                    {similarMinds?.length ? (
                         <>
-                            {similarMinds.user.map((person) => (
-                                <UserCard key={person.id} />
-                            ))}
                         </>
                     ) : (
                         <p className="text-base leading-[140%] font-normal text-[#7878A3]">
