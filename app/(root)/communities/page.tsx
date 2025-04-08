@@ -6,18 +6,12 @@ import { Pagination, Searchbar } from "@/components/shared"
 import { fetchCommunities } from "@/lib/actions/community.actions"
 import { fetchUser } from "@/lib/actions/user.actions"
 
-interface PageProps {
-    searchParams: { [key: string]: string | undefined }
-}
-
 async function Communities({
     searchParams,
-} : {
-    searchParams?: { [key: string]: string | string[] | undefined };
+}: {
+    searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
-    const searchString = searchParams?.q as string || ""
-    const pageNumber = parseInt(searchParams?.page as string || "1")
-    const sortBy = searchParams?.sortBy as "asc" | "desc" || "desc"
+    const resSearchParams = await searchParams
     const user = await currentUser()
     if(!user) { 
         return null
@@ -28,8 +22,13 @@ async function Communities({
     if(!userInfo?.onboarded) {
         redirect('/onboarding')
     }
-
-    const allCommunities = await fetchCommunities({ searchString, pageNumber, sortBy })
+    console.log(resSearchParams)
+    
+    const allCommunities = await fetchCommunities({
+        searchString: resSearchParams.q,
+        pageNumber: resSearchParams?.page ? +resSearchParams.page : 1,
+        pageSize: 25
+    })
     return (
         <>
             <h1 className="text-[30px] font-bold leading-[140%] text-white">
@@ -52,7 +51,7 @@ async function Communities({
             </section>
             <Pagination 
                 path="communities"
-                pageNumber={searchParams?.page ? +searchParams.page : 1}
+                pageNumber={resSearchParams?.page ? +resSearchParams.page : 1}
                 isNext={allCommunities.isNext}
             />
         </>

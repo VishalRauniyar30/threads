@@ -44,7 +44,7 @@ function ThreadCard({
                                 src={author.image}
                                 fill
                                 alt="user-community-image"
-                                className="cursor-pointer rounded-full"
+                                className="cursor-pointer rounded-full w-full h-full"
                             />
                         </Link>
                         <div className="relative mt-2 w-0.5 grow rounded-full bg-neutral-800" />

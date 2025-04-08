@@ -5,7 +5,9 @@ import { UserCard } from "@/components/cards"
 import { Pagination, Searchbar } from "@/components/shared"
 import { fetchUser, fetchUsers } from "@/lib/actions/user.actions"
 
-async function Search({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
+async function Search({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }> }) {
+    const resSearchParams = await searchParams
+    console.log(resSearchParams)
     
     const user = await currentUser()
     if(!user) { 
@@ -20,8 +22,8 @@ async function Search({ searchParams }: { searchParams: { [key: string]: string 
 
     const allUsers = await fetchUsers({
         userId: user.id,
-        searchString: searchParams.q,
-        pageNumber: searchParams?.page ? +searchParams.page : 1,
+        searchString: resSearchParams.q,
+        pageNumber: resSearchParams?.page ? +resSearchParams.page : 1,
         pageSize: 25
     })
     
@@ -51,7 +53,7 @@ async function Search({ searchParams }: { searchParams: { [key: string]: string 
             </div>
             <Pagination 
                 path="search"
-                pageNumber={searchParams?.page ? +searchParams.page : 1}
+                pageNumber={resSearchParams?.page ? +resSearchParams.page : 1}
                 isNext={allUsers.isNext}
             />
         </section>

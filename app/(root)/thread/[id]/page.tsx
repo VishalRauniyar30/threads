@@ -6,8 +6,9 @@ import { fetchThreadById } from "@/lib/actions/thread.actions"
 import { ThreadCard } from "@/components/cards"
 import { Comment } from "@/components/forms"
 
-async function Thread({ params }: { params: { id: string } }) {
-    if(!params.id) {
+async function Thread({ params }: { params: Promise<{ id: string }> }) {
+    const resParams = await params
+    if(!resParams.id) {
         return null
     }
 
@@ -22,7 +23,7 @@ async function Thread({ params }: { params: { id: string } }) {
         redirect('/onboarding')
     }
 
-    const thread = await fetchThreadById(params.id)
+    const thread = await fetchThreadById(resParams.id)
 
     return (
         <section className="relative">

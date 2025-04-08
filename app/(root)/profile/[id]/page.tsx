@@ -7,11 +7,12 @@ import { ProfileHeader, ThreadsTab } from "@/components/shared"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { profileTabs } from "@/constants"
 
-async function Profile({ params }: { params: { id: string } }) {
+async function Profile({ params }: { params: Promise<{ id: string }> }) {
+    const resParams = await params
     const user = await currentUser()
     if(!user) return null
 
-    const userInfo = await fetchUser(params.id)
+    const userInfo = await fetchUser(resParams.id)
 
     if(!userInfo?.onboarded) {
         redirect('/onboarding')

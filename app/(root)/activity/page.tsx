@@ -39,7 +39,7 @@ async function Activity() {
                                         alt="author logo"
                                         width={20}
                                         height={20}
-                                        className="rounded-full object-cover"
+                                        className="rounded-full object-cover w-5 h-5"
                                     />
                                     <p className="text-[14px] font-normal leading-[140%] text-white">
                                         <span className="mr-1 text-[#877EFF]">
