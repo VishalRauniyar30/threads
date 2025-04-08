@@ -6,11 +6,15 @@ import { Pagination, Searchbar } from "@/components/shared"
 import { fetchCommunities } from "@/lib/actions/community.actions"
 import { fetchUser } from "@/lib/actions/user.actions"
 
-interface CommunitiesPageProps {
-    searchParams: { [key: string]: string | undefined }
+type SearchParams = {
+    [key: string]: string | undefined
 }
 
-async function Communities ({ searchParams }: CommunitiesPageProps) {
+interface Props {
+  searchParams: SearchParams
+}
+
+async function Communities ({ searchParams }: Props) {
     const user = await currentUser()
         if(!user) { 
             return null
