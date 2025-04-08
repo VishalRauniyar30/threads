@@ -6,11 +6,11 @@ import { useRouter } from "next/navigation"
 
 import { Input } from "../ui/input"
 
-interface SearchbarProps{
+interface Props{
     routeType: string
 }
 
-function Searchbar({ routeType }: SearchbarProps) {
+function Searchbar({ routeType }: Props) {
     const router = useRouter()
     const [search, setSearch] = useState("")
 

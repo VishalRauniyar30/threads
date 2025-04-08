@@ -12,11 +12,11 @@ import { Textarea } from "../ui/textarea"
 import { Button } from "../ui/button"
 import { createThread } from "@/lib/actions/thread.actions"
 
-interface PostThreadProps {
+interface Props {
     userId: string
 }
 
-function PostThread ({ userId }: PostThreadProps) {
+function PostThread ({ userId }: Props) {
     const router = useRouter()
     const pathname = usePathname()
 

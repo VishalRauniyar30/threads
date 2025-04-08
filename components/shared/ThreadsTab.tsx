@@ -30,13 +30,13 @@ interface Result {
     }[];
 }
 
-interface ThreadsTabProps {
+interface Props {
     currentUserId: string;
     accountId: string;
     accountType: string;
 }
 
-async function ThreadsTab({ currentUserId, accountId, accountType }: ThreadsTabProps) {
+async function ThreadsTab({ currentUserId, accountId, accountType }: Props) {
     let result : Result
     // if(accountType === 'Community') {
     //     result = await fetchCommunityPosts(accountId)

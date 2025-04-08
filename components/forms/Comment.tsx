@@ -12,13 +12,13 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 
-interface CommentProps {
+interface Props {
     threadId: string;
     currentUserImg: string;
     currentUserId: string;
 }
 
-function Comment({ threadId, currentUserId, currentUserImg }: CommentProps) {
+function Comment({ threadId, currentUserId, currentUserImg }: Props) {
     const pathname = usePathname()
 
     const form = useForm<z.infer<typeof CommentValidation>>({

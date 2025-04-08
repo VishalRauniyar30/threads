@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 
 import { Button } from "../ui/button"
 
-interface UserCardProps {
+interface Props {
     id: string;
     name: string;
     username: string;
@@ -13,7 +13,7 @@ interface UserCardProps {
     personType: string;
 }
 
-function UserCard({ id, name, username, imgUrl, personType }: UserCardProps) {
+function UserCard({ id, name, username, imgUrl, personType }: Props) {
     const router = useRouter()
     
     const isCommunity = personType === 'Community'

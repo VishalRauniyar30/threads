@@ -4,7 +4,7 @@ import Link from "next/link"
 import { DeleteThread } from "../forms"
 import { formateDateString } from "@/lib/utils"
 
-interface ThreadCardProps{
+interface Props{
     id: string;
     currentUserId: string;
     parentId: string | null;
@@ -32,8 +32,8 @@ function ThreadCard({
     id, currentUserId, parentId,
     content, author, community,
     createdAt, comments, isComment
- }: ThreadCardProps) {
-    
+ }: Props) {
+
     return (
         <article className={`flex w-full flex-col rounded-xl ${!isComment ? 'bg-[#121417] sm:p-7' : 'px-0 sm:px-7'}`}>
             <div className="flex items-start justify-between">

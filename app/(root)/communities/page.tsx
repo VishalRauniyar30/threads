@@ -6,31 +6,26 @@ import { Pagination, Searchbar } from "@/components/shared"
 import { fetchCommunities } from "@/lib/actions/community.actions"
 import { fetchUser } from "@/lib/actions/user.actions"
 
-type SearchParams = {
-    [key: string]: string | undefined
+interface PageProps {
+    searchParams: { [key: string]: string | undefined }
 }
 
-interface Props {
-  searchParams: SearchParams
-}
-
-async function Communities ({ searchParams }: Props) {
+async function Communities ({ searchParams }: PageProps) {
+    const searchString = searchParams?.q as string || ""
+    const pageNumber = parseInt(searchParams?.page as string || "1")
+    const sortBy = searchParams?.sortBy as "asc" | "desc" || "desc"
     const user = await currentUser()
-        if(!user) { 
-            return null
-        }
-    
-        const userInfo = await fetchUser(user.id)
-    
-        if(!userInfo?.onboarded) {
-            redirect('/onboarding')
-        }
-    
-        const allCommunities = await fetchCommunities({
-            searchString: searchParams.q,
-            pageNumber: searchParams?.page ? +searchParams.page : 1,
-            pageSize: 25
-        })
+    if(!user) { 
+        return null
+    }
+
+    const userInfo = await fetchUser(user.id)
+
+    if(!userInfo?.onboarded) {
+        redirect('/onboarding')
+    }
+
+    const allCommunities = await fetchCommunities({ searchString, pageNumber, sortBy })
     return (
         <>
             <h1 className="text-[30px] font-bold leading-[140%] text-white">

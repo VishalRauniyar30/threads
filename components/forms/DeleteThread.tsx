@@ -4,7 +4,7 @@ import { deleteThread } from "@/lib/actions/thread.actions";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
-interface DeleteThreadProps {
+interface Props {
     threadId: string;
     currentUserId: string;
     authorId: string;
@@ -15,7 +15,7 @@ interface DeleteThreadProps {
 function DeleteThread({ 
     threadId, currentUserId,
     authorId, parentId, isComment
-}: DeleteThreadProps) {
+}: Props) {
     const pathname = usePathname()
     const router = useRouter()
 

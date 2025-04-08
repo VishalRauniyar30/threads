@@ -4,13 +4,13 @@ import { useRouter } from "next/navigation"
 
 import { Button } from "../ui/button"
 
-interface PaginationProps{
+interface Props{
     pageNumber: number;
     isNext: boolean;
     path: string;
 }
 
-function Pagination({ pageNumber, isNext, path }: PaginationProps) {
+function Pagination({ pageNumber, isNext, path }: Props) {
     const router = useRouter()
 
     const handleNavigation = (type: string) => {

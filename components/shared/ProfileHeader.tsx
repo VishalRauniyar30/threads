@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 
-interface ProfileHeaderProps{
+interface Props{
     accountId: string;
     authUserId: string;
     name: string;
@@ -14,7 +14,7 @@ interface ProfileHeaderProps{
 function ProfileHeader({ 
     accountId, authUserId, name,
     username, imgUrl, bio, type
-} : ProfileHeaderProps) {
+} : Props) {
 
     return (
         <div className="flex w-full flex-col justify-start">

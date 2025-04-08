@@ -23,7 +23,7 @@ import { isBase64Image } from '@/lib/utils'
 import { useUploadThing } from '@/lib/uploadthing'
 import { updateUser } from '@/lib/actions/user.actions'
 
-interface AccountProfileProps {
+interface Props {
     user: {
         id: string;
         objectId : string;
@@ -35,7 +35,7 @@ interface AccountProfileProps {
     btnTitle: string;
 }
 
-function AccountProfile ({ user, btnTitle }: AccountProfileProps) {
+function AccountProfile ({ user, btnTitle }: Props) {
     const router = useRouter()
     const pathname = usePathname()
 
