@@ -10,7 +10,11 @@ interface PageProps {
     searchParams: { [key: string]: string | undefined }
 }
 
-async function Communities ({ searchParams }: PageProps) {
+async function Communities({
+    searchParams,
+} : {
+    searchParams?: { [key: string]: string | string[] | undefined };
+}) {
     const searchString = searchParams?.q as string || ""
     const pageNumber = parseInt(searchParams?.page as string || "1")
     const sortBy = searchParams?.sortBy as "asc" | "desc" || "desc"
