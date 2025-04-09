@@ -60,12 +60,13 @@ function ThreadCard({
                         </p>
                         <div className={`${isComment && 'mb-10'} mt-5 flex flex-col gap-3`}>
                             <div className="flex gap-3.5">
-                                <Image src='/assets/heart-gray.svg' width={24} height={24} alt="heart" className="cursor-pointer object-contain"/>
-                                <Link href={`/thread/${id}`}>
+                                {/* <Image src='/assets/heart-gray.svg' width={24} height={24} alt="heart" className="cursor-pointer object-contain"/> */}
+                                <Link href={`/thread/${id}`} className="flex gap-1 items-center">
                                     <Image src='/assets/reply.svg' width={24} height={24} alt="heart" className="cursor-pointer object-contain" />
+                                    <p className="text-[12px] font-medium text-[#697C89]">comment</p>
                                 </Link>
-                                <Image src='/assets/repost.svg' width={24} height={24} alt="heart" className="cursor-pointer object-contain" />
-                                <Image src='/assets/share.svg' width={24} height={24} alt="heart" className="cursor-pointer object-contain" />
+                                {/* <Image src='/assets/repost.svg' width={24} height={24} alt="heart" className="cursor-pointer object-contain" /> */}
+                                {/* <Image src='/assets/share.svg' width={24} height={24} alt="heart" className="cursor-pointer object-contain" /> */}
                             </div>
                             {isComment && comments.length > 0 && (
                                 <Link href={`/thread/${id}`}>
