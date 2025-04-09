@@ -59,7 +59,7 @@ function Comment({ threadId, currentUserId, currentUserImg }: Props) {
                                     type="text"
                                     {...field}
                                     placeholder="Comment..."
-                                    className="no-focus text-[#ffffff] outline-none"
+                                    className="no-focus text-white outline-none"
                                 />
                             </FormControl>
                         </FormItem>

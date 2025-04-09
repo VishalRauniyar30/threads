@@ -35,7 +35,7 @@ function Bottombar() {
                                 height={16} 
                                 className='object-contain' 
                             />
-                            <p className='text-[#ffffff] max-sm:hidden text-[12px] font-medium leading-[16px]'>
+                            <p className='text-white max-sm:hidden text-[12px] font-medium leading-[16px]'>
                                 {link.label.split(/\s+/)[0]}
                             </p>
                         </Link>

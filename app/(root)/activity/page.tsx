@@ -8,7 +8,7 @@ import { fetchUser, getActivity } from "@/lib/actions/user.actions"
 async function Activity() {
     const user = await currentUser()
     if(!user) {
-        return null
+        redirect('/sign-in')
     }
 
     const userInfo = await fetchUser(user.id)

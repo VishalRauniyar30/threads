@@ -113,11 +113,13 @@ export async function deleteThread(id: string, path: string): Promise<void> {
         }
         // Fetch all child threads and their descendants recursively
         const descendantThreads = await fetchAllChildThreads(id)
+        
         // Get all descendant thread IDs including the main thread ID and child thread IDs
         const descendantThreadIds = [
             id,
             ...descendantThreads.map((thread) => thread._id)
         ]
+        
         // Extract the authorIds and communityIds to update User and Community models respectively
         const uniqueAuthorIds = new Set([
             ...descendantThreads.map((thread) => thread?.author?._id?.toString()),
@@ -129,6 +131,8 @@ export async function deleteThread(id: string, path: string): Promise<void> {
             mainThread?.community?._id?.toString(),
         ].filter((id) => id !== undefined))
         // Recursively delete child threads and their descendants
+        await Thread.deleteMany({ _id: { $in: descendantThreadIds } })
+
         await User.updateMany(
             { _id: { $in: Array.from(uniqueAuthorIds) } },
             { $pull: { threads: { $in: descendantThreadIds } } }
@@ -138,6 +142,7 @@ export async function deleteThread(id: string, path: string): Promise<void> {
             { _id: { $in: Array.from(uniqueCommunityIds) } },
             { $pull: { threads: { $in: descendantThreadIds } } }
         )
+
         revalidatePath(path)
     } catch (error: any) {
         throw new Error(`Failed to delete thread: ${error.message}`)

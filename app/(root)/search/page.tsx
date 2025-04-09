@@ -11,7 +11,7 @@ async function Search({ searchParams }: { searchParams: Promise<{ [key: string]:
     
     const user = await currentUser()
     if(!user) { 
-        return null
+        redirect('/sign-in')
     }
 
     const userInfo = await fetchUser(user.id)

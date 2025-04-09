@@ -4,7 +4,7 @@ import { currentUser } from "@clerk/nextjs/server"
 import { AccountProfile } from "@/components/forms"
 import { fetchUser } from "@/lib/actions/user.actions"
 
-async function Onboading () {
+async function Onboarding () {
     const user = await currentUser()
 
     if(!user) {
@@ -28,7 +28,7 @@ async function Onboading () {
 
     return (
         <main className="mx-auto flex max-w-3xl flex-col justify-start px-10 py-20">
-            <h1 className="text-[30px] font-bold leading-[140%] text-[#ffffff]">
+            <h1 className="text-[30px] font-bold leading-[140%] text-white">
                 Onboarding
             </h1>
             <p className="mt-3 text-base font-normal leading-[140%] text-[#EFEFEF]">
@@ -41,4 +41,4 @@ async function Onboading () {
     )
 }
 
-export default Onboading
+export default Onboarding

@@ -153,7 +153,7 @@ function AccountProfile ({ user, btnTitle }: Props) {
                                 <Input 
                                     type='text'
                                     {...field}
-                                    className='border border-[#1F1F22] bg-[#101012] text-[#ffffff] focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0'
+                                    className='border border-[#1F1F22] bg-[#101012] text-white focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0'
                                 />
                             </FormControl>
                             <FormMessage />
@@ -171,7 +171,7 @@ function AccountProfile ({ user, btnTitle }: Props) {
                             <FormControl>
                                 <Input 
                                     type='text'
-                                    className='border border-[#1F1F22] bg-[#101012] text-[#ffffff] focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0'
+                                    className='border border-[#1F1F22] bg-[#101012] text-white focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0'
                                     {...field}
                                 />
                             </FormControl>
@@ -190,7 +190,7 @@ function AccountProfile ({ user, btnTitle }: Props) {
                             <FormControl>
                                 <Textarea 
                                     rows={10}
-                                    className='border border-[#1F1F22] bg-[#101012] text-[#ffffff] focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0'
+                                    className='border border-[#1F1F22] bg-[#101012] text-white focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0'
                                     {...field}
                                 />
                             </FormControl>

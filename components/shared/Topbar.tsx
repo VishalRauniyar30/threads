@@ -13,7 +13,7 @@ function Topbar() {
                     height={28}
                     alt='logo'
                 />
-                <p className='text-[24px] font-bold leading-[140%] text-[#ffffff] max-sm:hidden'>
+                <p className='text-[24px] font-bold leading-[140%] text-white max-sm:hidden'>
                     Threads
                 </p>
             </Link>

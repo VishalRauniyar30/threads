@@ -51,7 +51,7 @@ function ThreadCard({
                     </div>
                     <div className="flex w-full flex-col">
                         <Link href={`/profile/${author.id}`} className="w-fit">
-                            <h4 className="cursor-pointer text-base font-semibold leading-[140%] text-[#ffffff]">
+                            <h4 className="cursor-pointer text-base font-semibold leading-[140%] text-white">
                                 {author.name}
                             </h4>
                         </Link>
@@ -78,7 +78,7 @@ function ThreadCard({
                     </div>
                 </div>
                 <DeleteThread
-                    threadId={JSON.stringify(id)}
+                    threadId={id.toString()}
                     currentUserId={currentUserId}
                     authorId={author.id}
                     parentId={parentId}

@@ -34,7 +34,7 @@ function LeftSidebar () {
                                 width={24} 
                                 height={24} 
                             />
-                            <p className='text-[#ffffff] max-lg:hidden'>
+                            <p className='text-white max-lg:hidden'>
                                 {link.label}
                             </p>
                         </Link>

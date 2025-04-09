@@ -34,7 +34,7 @@ function PostThread ({ userId }: Props) {
         await createThread({
             text: values.thread,
             author: userId,
-            communityId: null,
+            communityId: organization ? organization.id : null,
             path: pathname
         })
         
@@ -55,7 +55,7 @@ function PostThread ({ userId }: Props) {
                             <FormLabel className="text-base font-semibold leading-[140%] text-[#EFEFEF]">
                                 Content
                             </FormLabel>
-                            <FormControl className="no-focus border border-[#1F1F22] bg-[#101012] text-[#FFFFFF]">
+                            <FormControl className="no-focus border border-[#1F1F22] bg-[#101012] text-white">
                                 <Textarea 
                                     rows={15}
                                     {...field}

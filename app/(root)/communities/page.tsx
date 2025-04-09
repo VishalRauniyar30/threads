@@ -14,7 +14,7 @@ async function Communities({
     const resSearchParams = await searchParams
     const user = await currentUser()
     if(!user) { 
-        return null
+        redirect('/sign-in')
     }
 
     const userInfo = await fetchUser(user.id)
@@ -22,13 +22,13 @@ async function Communities({
     if(!userInfo?.onboarded) {
         redirect('/onboarding')
     }
-    console.log(resSearchParams)
     
     const allCommunities = await fetchCommunities({
         searchString: resSearchParams.q,
         pageNumber: resSearchParams?.page ? +resSearchParams.page : 1,
         pageSize: 25
     })
+
     return (
         <>
             <h1 className="text-[30px] font-bold leading-[140%] text-white">
@@ -44,6 +44,13 @@ async function Communities({
                     <>
                         {allCommunities.communities.map((community) => (
                             <CommunityCard
+                                key={community.id}
+                                id={community.id}
+                                name={community.name}
+                                username={community.username}
+                                bio={community.bio}
+                                imgUrl={community.image}
+                                members={community.members}
                             />
                         ))}
                     </>

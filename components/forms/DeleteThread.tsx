@@ -24,7 +24,7 @@ function DeleteThread({
     }
 
     const handleClick = async () => {
-        await deleteThread(JSON.stringify(threadId), pathname)
+        await deleteThread(threadId, pathname)
         if(!parentId || !isComment) {
             router.push('/')
         }

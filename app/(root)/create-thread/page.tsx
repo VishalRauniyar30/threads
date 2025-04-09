@@ -8,7 +8,7 @@ async function CreateThread() {
     const user = await currentUser()
 
     if(!user){
-        return null
+        redirect('/sign-in')
     }
 
     const userInfo = await fetchUser(user.id)
@@ -20,7 +20,7 @@ async function CreateThread() {
 
     return (
         <>
-            <h1 className="text-[30px] font-bold leading-[140%] text-[#ffffff]">
+            <h1 className="text-[30px] font-bold leading-[140%] text-white">
                 Create Thread    
             </h1>
             <PostThread userId={userInfo._id.toString()} />

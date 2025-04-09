@@ -10,7 +10,9 @@ import { profileTabs } from "@/constants"
 async function Profile({ params }: { params: Promise<{ id: string }> }) {
     const resParams = await params
     const user = await currentUser()
-    if(!user) return null
+    if(!user) {
+        redirect('/sign-in')
+    }
 
     const userInfo = await fetchUser(resParams.id)
 
@@ -32,7 +34,7 @@ async function Profile({ params }: { params: Promise<{ id: string }> }) {
                 <Tabs defaultValue="threads" className="w-full">
                     <TabsList className="flex w-full min-h-[50px] flex-1 items-center gap-3 bg-[#121417] text-[#efefef] data-[state=active]:bg-[#0e0e12] data-[state=active]:text-[#efefef]">
                         {profileTabs.map((tab) => (
-                            <TabsTrigger key={tab.label} value={tab.value} className="flex w-full min-h-[50px] flex-1 items-center gap-3 bg-[#121417] text-[#efefef] data-[state=active]:bg-[#0e0e12] data-[state=active]:text-[#efefef]">
+                            <TabsTrigger key={tab.label} value={tab.value} className="flex w-full cursor-pointer min-h-[50px] flex-1 items-center gap-3 bg-[#121417] text-[#efefef] data-[state=active]:bg-[#0e0e12] data-[state=active]:text-[#efefef]">
                                 <Image
                                     src={tab.icon}
                                     alt={tab.label}
