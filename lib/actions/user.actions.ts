@@ -21,7 +21,7 @@ export async function updateUser({
     userId, username, name, bio, image, path 
 }: Params): Promise<void> {
     try {
-        connectDB()
+        await connectDB()
         await User.findOneAndUpdate(
             { id: userId }, 
             {
@@ -44,7 +44,7 @@ export async function updateUser({
 
 export async function fetchUser(userId: string) {
     try {
-        connectDB()
+        await connectDB()
         return await User.findOne({ id: userId }).populate({
             path: 'communities',
             model: Community
@@ -57,7 +57,7 @@ export async function fetchUser(userId: string) {
 
 export async function fetchUserPosts (userId: string){
     try {
-        connectDB()
+        await connectDB()
         //find all threads authored by the user with the given userId
         const threads = await User.findOne({ id: userId }).populate({
             path: 'threads',
@@ -98,7 +98,7 @@ export async function fetchUsers({
     sortBy?: SortOrder;
 }) {
     try {
-        connectDB()
+        await connectDB()
         // Calculate the number of users to skip based on the page number and page size.
         const skipAmount = (pageNumber -  1) * pageSize
         // Create a case-insensitive regular expression for the provided search string.
@@ -136,7 +136,7 @@ export async function fetchUsers({
 
 export async function getActivity(userId: string) {
     try {
-        connectDB()
+        await connectDB()
         //find all threads created by the user
         const userThreads = await Thread.find({ author: userId })
         //collect all the child thread ids (replies) 
