@@ -14,7 +14,7 @@ function Topbar() {
                     alt='logo'
                 />
                 <p className='text-[24px] font-bold leading-[140%] text-white max-sm:hidden'>
-                    Threads
+                    SpeakUp
                 </p>
             </Link>
             <div className='flex items-center gap-1'>

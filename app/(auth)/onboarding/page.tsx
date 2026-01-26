@@ -32,7 +32,7 @@ async function Onboarding () {
                 Onboarding
             </h1>
             <p className="mt-3 text-base font-normal leading-[140%] text-[#EFEFEF]">
-                Complete Your Profile Now, To Use Threads
+                Complete Your Profile Now, To Use SpeakUp
             </p>
             <section className="mt-9 bg-[#121417] p-10">
                 <AccountProfile user={userData} btnTitle="Continue" />

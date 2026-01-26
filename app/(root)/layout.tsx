@@ -10,7 +10,7 @@ import '../globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-    title: 'Threads',
+    title: 'SpeakUp',
     description: ' a real-time social media platform for text-based discussions, allowing users to post, reply, and engage in conversations'
 }
 
