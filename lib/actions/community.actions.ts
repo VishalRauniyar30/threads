@@ -23,6 +23,8 @@ export async function createCommunity(
         if(!user) {
             throw new Error('User Not Found') // Handle the case if the user with the id is not found
         }
+        console.log("createdById:", createdById)
+        console.log("user:", user)
 
         const newCommunity = new Community({
             id, name, username, image, bio, 

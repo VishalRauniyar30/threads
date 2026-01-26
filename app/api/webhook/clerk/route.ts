@@ -33,7 +33,7 @@ type Event = {
 export const POST = async(request: Request) => {
     const payload = await request.json()
     const header = headers()
-
+    console.log("🔥 WEBHOOK HIT")
     const heads = {
         "svix-id": (await header).get("svix-id"),
         "svix-timestamp": (await header).get("svix-timestamp"),

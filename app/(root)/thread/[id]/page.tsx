@@ -13,6 +13,9 @@ async function Thread({ params }: { params: Promise<{ id: string }> }) {
     }
 
     const user = await currentUser()
+
+    console.log(user)
+    
     if(!user) {
         redirect('/sign-in')
     }
@@ -42,7 +45,7 @@ async function Thread({ params }: { params: Promise<{ id: string }> }) {
             <div className="mt-7">
                 <Comment
                     threadId={thread.id}
-                    currentUserImg={user.imageUrl}
+                    currentUserImg={userInfo.image}
                     currentUserId={JSON.stringify(userInfo._id)}
                 />
             </div>
