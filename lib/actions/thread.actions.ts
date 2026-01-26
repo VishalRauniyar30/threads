@@ -16,7 +16,7 @@ interface Params {
 
 export async function createThread({ text, author, communityId, path }: Params) {
     try {
-        await connectDB()
+        connectDB()
 
         const communityIdObject = await Community.findOne(
             { id: communityId },
@@ -49,7 +49,7 @@ export async function createThread({ text, author, communityId, path }: Params) 
 
 export async function fetchPosts(pageNumber = 1, pageSize = 20) {
     try {
-        await connectDB()
+        connectDB()
         // Calculate the number of posts to skip based on the page number and page size
         const skipAmount = (pageNumber - 1) * pageSize
 
@@ -104,7 +104,7 @@ async function fetchAllChildThreads(threadId: string): Promise<any[]> {
 
 export async function deleteThread(id: string, path: string): Promise<void> {
     try {
-        await connectDB()
+        connectDB()
         // Find the thread to be deleted (the main thread)
         const mainThread = await Thread.findById(id).populate("author community")
 
@@ -151,7 +151,7 @@ export async function deleteThread(id: string, path: string): Promise<void> {
 
 export async function fetchThreadById(threadId: string) {
     try {
-        await connectDB()
+        connectDB()
 
         const thread = await Thread.findById(threadId)
         .populate({
@@ -195,7 +195,7 @@ export async function addCommentToThread(
     path: string
 ) {
     try {
-        await connectDB()
+        connectDB()
         //find the original thread by its ID
         const originalThread = await Thread.findById(threadId)
 

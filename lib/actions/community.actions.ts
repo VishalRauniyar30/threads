@@ -16,7 +16,7 @@ export async function createCommunity(
     createdById: string // Change the parameter name to reflect it's an id
 ) {
     try {
-        await connectDB()
+        connectDB()
         // Find the user with the provided unique id
         const user = await User.findOne({ id: createdById })
 
@@ -44,7 +44,7 @@ export async function createCommunity(
 
 export async function fetchCommunityDetails(id: string) {
     try {
-        await connectDB()
+        connectDB()
 
         const communityDetails = await Community.findOne({ id }).populate([
             "createdBy", {
@@ -66,7 +66,7 @@ export async function fetchCommunityDetails(id: string) {
 
 export async function fetchCommunityPosts(id: string) {
     try {
-        await connectDB()
+        connectDB()
 
         const communityPosts = await Community.findById(id).populate({
             path: 'threads',
@@ -106,7 +106,7 @@ export async function fetchCommunities({
     sortBy?: SortOrder;
 }) {
     try {
-        await connectDB()
+        connectDB()
         // Calculate the number of users to skip based on the page number and page size.
         const skipAmount = (pageNumber -  1) * pageSize
         // Create a case-insensitive regular expression for the provided search string.
@@ -144,7 +144,7 @@ export async function addMemberToCommunity(
     memberId: string
 ) {
     try {
-        await connectDB()
+        connectDB()
 
         const community = await Community.findOne({ id: communityId })
 
@@ -185,7 +185,7 @@ export async function removeUserFromCommunity(
     communityId: string
 ) {
     try {
-        await connectDB()
+        connectDB()
 
         const userIdObject = await User.findOne({ id: userId }, { _id: 1 })
 
@@ -227,7 +227,7 @@ export async function updateCommunityInfo(
     image: string
 ) {
     try {
-        await connectDB()
+        connectDB()
 
         const updatedCommunity = await Community.findOneAndUpdate(
             { id: communityId },
@@ -249,7 +249,7 @@ export async function updateCommunityInfo(
 
 export async function deleteCommunity(communityId: string) {
     try {
-        await connectDB()
+        connectDB()
 
         const deletedCommunity = await Community.findOneAndDelete({
             id: communityId
