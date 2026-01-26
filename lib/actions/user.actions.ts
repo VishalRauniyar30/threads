@@ -137,25 +137,36 @@ export async function fetchUsers({
 export async function getActivity(userId: string) {
     try {
         await connectDB()
-        //find all threads created by the user
-        const userThreads = await Thread.find({ author: userId })
-        //collect all the child thread ids (replies) 
-        const childThreadIds = userThreads.reduce((acc, userThread) => {
-            return acc.concat(userThread.children)
-        }, [])
 
+        const userThreads = await Thread.find({ author: userId })
+
+        const childThreadIds = userThreads.flatMap(
+            (thread) => thread.children
+        )
+        
         const replies = await Thread.find({
             _id: { $in: childThreadIds },
             author: { $ne: userId },
-        }).populate({
-            path: 'author',
+            }).populate({
+            path: "author",
             model: User,
-            select: 'name image _id',
+            select: "name image id",
         })
 
-        return replies
+        // 🔥 SERIALIZE HERE
+        return replies.map((reply) => ({
+            id: reply._id.toString(),
+            text: reply.text,
+            parentId: reply.parentId?.toString(),
+            createdAt: reply.createdAt.toISOString(),
+            author: {
+                id: reply.author.id,
+                name: reply.author.name,
+                image: reply.author.image,
+            },
+        }))
     } catch (error) {
-        console.error("Error fetching replies: ", error)
+        console.error("Error fetching replies:", error)
         throw error
     }
 }

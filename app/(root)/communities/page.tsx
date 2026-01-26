@@ -37,7 +37,7 @@ async function Communities({
             <div className="mt-5">
                 <Searchbar routeType="/communities" />
             </div>
-            <section className="mt-9 flex flex-wrap gap-4">
+            <section className="mt-9 grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {allCommunities?.communities?.length === 0 ? (
                     <p className="text-center text-base font-normal leading-[140%] text-[#7878A3]">No Result</p>
                 ) : (

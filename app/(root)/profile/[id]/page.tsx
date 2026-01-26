@@ -2,10 +2,11 @@ import Image from "next/image"
 import { redirect } from "next/navigation"
 import { currentUser } from "@clerk/nextjs/server"
 
-import { fetchUser } from "@/lib/actions/user.actions"
+import { fetchUser, getActivity } from "@/lib/actions/user.actions"
 import { ProfileHeader, ThreadsTab } from "@/components/shared"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { profileTabs } from "@/constants"
+import ReplyCard from "@/components/shared/ReplyCard"
 
 async function Profile({ params }: { params: Promise<{ id: string }> }) {
     const resParams = await params
@@ -19,7 +20,7 @@ async function Profile({ params }: { params: Promise<{ id: string }> }) {
     if(!userInfo?.onboarded) {
         redirect('/onboarding')
     }
-
+    const activity = await getActivity(userInfo._id)
     return (
         <section>
             <ProfileHeader
@@ -48,18 +49,37 @@ async function Profile({ params }: { params: Promise<{ id: string }> }) {
                                         {userInfo?.threads?.length}
                                     </p>
                                 )}
+                                {tab.label === 'Replies' && (
+                                    <p className="ml-1 rounded-sm bg-[#5C5C7B] px-2 py-1 text-[10px] font-medium leading-[140%] text-[#efefef]">
+                                        {activity?.length}
+                                    </p>
+                                )}
                             </TabsTrigger>
                         ))}
                     </TabsList>
-                    {profileTabs.map((tab) => (
-                        <TabsContent key={`content-${tab.label}`} value={tab.value} className="w-full text-white">
-                            <ThreadsTab
-                                accountId={userInfo.id}
-                                currentUserId={user.id}
-                                accountType="User"
-                            />
-                        </TabsContent>
-                    ))}
+                    <TabsContent value="threads">
+                        <ThreadsTab
+                            accountId={userInfo.id}
+                            currentUserId={user.id}
+                            accountType="User"
+                        />
+                    </TabsContent>
+                    <TabsContent value="replies">
+                        {activity.length === 0 ? (
+                            <p className="text-center text-[#7878A3]">No Activity Yet</p>
+                        ) : (
+                            activity.map((reply) => (
+                                <ReplyCard
+                                    key={reply.id}
+                                    id={reply.id}
+                                    text={reply.text}
+                                    parentId={reply.parentId}
+                                    createdAt={reply.createdAt}
+                                    author={reply.author}
+                                />
+                            ))
+                        )}
+                    </TabsContent>
                 </Tabs>
             </div>
         </section>

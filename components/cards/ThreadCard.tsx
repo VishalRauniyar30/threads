@@ -105,6 +105,11 @@ function ThreadCard({
                     </Link>
                 </div>
             )}
+            {!isComment && !community && (
+                <p className="mt-5 flex items-center text-[12px] font-medium leading-[16px] text-[#697C89]">
+                    {formateDateString(createdAt)}
+                </p>
+            )}
             {!isComment && community && (
                 <Link className="mt-5 flex items-center" href={`/communities/${community.id}`}>
                     <p className="text-[12px] font-medium leading-[16px] text-[#697C89]">
