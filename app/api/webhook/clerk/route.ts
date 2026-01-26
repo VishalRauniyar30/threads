@@ -29,11 +29,14 @@ type Event = {
     object: 'event';
     type: EventType;
 }
+export const GET = async () => {
+    console.log("🔥 GET WEBHOOK HIT")
+    return new Response("OK")
+}
 
 export const POST = async(request: Request) => {
     const payload = await request.json()
     const header = headers()
-    console.log("🔥 WEBHOOK HIT")
     const heads = {
         "svix-id": (await header).get("svix-id"),
         "svix-timestamp": (await header).get("svix-timestamp"),
@@ -71,7 +74,7 @@ export const POST = async(request: Request) => {
                 name, 
                 slug, 
                 logo_url || image_url, 
-                "org bio", 
+                "", 
                 created_by
             )
             return NextResponse.json({ message: "User created" }, { status: 201 })
